@@ -6,7 +6,7 @@ function App() {
   const [tone, setTone] = useState('Professional');
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isPro, setIsPro] = useState(false); // Mock Pro state
+
 
   const handleGenerate = async () => {
     if (!topic) return;
@@ -17,7 +17,7 @@ function App() {
     // For simplicity, let's keep old content but show loader.
 
     try {
-      const response = await fetch('https://content-ai-api-1yd3.onrender.com/generate', {
+      const response = await fetch('http://localhost:8000/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ function App() {
           post_type: postType,
           topic: topic,
           tone: tone,
-          is_pro: isPro,
+
         }),
       });
 
@@ -59,17 +59,7 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Mock Pro Toggle */}
-      <div style={{ position: 'absolute', top: '20px', right: '20px', zIndex: 100 }}>
-        <label style={{ color: 'var(--text-muted)', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--card-bg)', padding: '0.5rem 1rem', borderRadius: '20px', border: '1px solid var(--border)' }}>
-          <input
-            type="checkbox"
-            checked={isPro}
-            onChange={(e) => setIsPro(e.target.checked)}
-          />
-          <span>Pro Mode {isPro ? '💎' : ''}</span>
-        </label>
-      </div>
+
 
       {/* Input Section */}
       <div className="card input-section">
@@ -142,11 +132,7 @@ function App() {
               </button>
             </div>
 
-            {!isPro && (
-              <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', marginTop: '0.5rem' }}>
-                Free plan includes branding. <span style={{ color: 'var(--primary)', cursor: 'pointer' }} onClick={() => setIsPro(true)}>Upgrade to Remove</span>
-              </p>
-            )}
+
           </div>
         )}
       </div>

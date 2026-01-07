@@ -17,7 +17,7 @@ function App() {
     // For simplicity, let's keep old content but show loader.
 
     try {
-      const response = await fetch('http://localhost:8000/generate', {
+      const response = await fetch('https://content-ai-api-1yd3.onrender.com/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
